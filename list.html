@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>To-Do List</title>
+ <style>
+ body {
+ font-family: Arial, sans-serif;
+ }
+ #tugas {
+ width: 70%;
+ height: 30px;
+ font-size: 18px;
+ padding: 10px;
+ }
+ #tambah {
+ width: 20%;
+ height: 50px;
+ font-size: 18px;
+ background-color: #4CAF50;
+ color: #fff;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ }
+ #daftar-tugas {
+ list-style: none;
+ padding: 0;
+ margin: 0;
+ }
+ #daftar-tugas li {
+ padding: 10px;
+ border-bottom: 1px solid #ccc;
+ }
+ </style>
+</head>
+<body>
+ <h1>To-Do List</h1>
+ <input id="tugas" type="text" placeholder="Masukkan tugas">
+ <button id="tambah">Tambah</button>
+ <ul id="daftar-tugas"></ul>
+ <script>
+ let daftarTugas = document.getElementById('daftar-tugas');
+ let inputTugas = document.getElementById('tugas');
+ let tombolTambah = document.getElementById('tambah');
+ tombolTambah.addEventListener('click', tambahTugas);
+ function tambahTugas() {
+ let tugas = inputTugas.value;
+ if (tugas !== '') {
+ let li = document.createElement('li');
+ li.textContent = tugas;
+ daftarTugas.appendChild(li);
+ inputTugas.value = '';
+ }
+ }
+ daftarTugas.addEventListener('click', hapusTugas);
+ function hapusTugas(e) {
+ if (e.target.tagName === 'LI') {
+ e.target.remove();
+ }
+ }
+ </script>
+</body>
+</html>

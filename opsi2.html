@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eprom Robotic Competition</title>
+  <style>
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    section.active {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: white;
+    }
+
+    nav {
+      background-color: #222;
+      padding: 10px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .logo-text {
+      font-weight: bold;
+      color: #00ffff;
+      font-size: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s, border-bottom 0.3s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #00ffff;
+      font-weight: bold;
+      border-bottom: 2px solid #00ffff;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+    }
+
+    section {
+      position: absolute;
+      top: 100px;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s;
+      padding: 30px 20px;
+      max-width: 100%;
+    }
+
+    section.active {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      z-index: 1;
+      animation: fadeInSlide 0.8s ease;
+    }
+
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    iframe {
+      width: 100%;
+      height: 1600px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.1);
+    }
+
+    /* FAQ collapsible */
+    .faq-item {
+      margin-bottom: 15px;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .faq-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .faq-question {
+      font-weight: bold;
+      font-size: 16px;
+      color: #ffffff;
+      position: relative;
+      padding-right: 20px;
+    }
+
+    .faq-question::after {
+      content: "▼";
+      position: absolute;
+      right: 0;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      font-size: 15px;
+      color: #dddddd;
+      padding-left: 10px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      margin-top: 8px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+        background-color: #111;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,255,255,0.1);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      nav a {
+        display: block;
+        margin: 0;
+      }
+
+      iframe {
+        height: 1800px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigasi -->
+  <nav>
+    <div class="nav-container">
+      <span class="logo-text">ERCO</span>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <div class="nav-links" id="navLinks">
+        <a href="#" onclick="showSection('home')">Home</a>
+        <a href="#" onclick="showSection('register')">Daftar</a>
+        <a href="#" onclick="showSection('rules')">Peraturan</a>
+        <a href="#" onclick="showSection('contact')">Kontak</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Section Home -->
+  <section id="home" class="active">
+    <img src="Eprom logo.png" alt="Logo EPROM" style="max-width: 200px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,255,255,0.2);">
+    <h2>Selamat Datang di Eprom Robotic Competition (ERCO)</h2>
+    <p>Eprom Robotic Competition adalah kompetisi robotik tingkat universitas dan sekolah menengah</p>
+    <p>yang diselenggarakan oleh Elektro Poltek Robot Team (EPROM), Politeknik Negeri Ujung Pandang.</p>
+
+    <!-- Highlight Kategori -->
+    <div style="margin-top: 50px;">
+      <h3 style="font-size: 24px; margin-bottom: 20px; color: #00ffff;">Kategori Lomba</h3>
+      <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+        <div style="background-color: #222; padding: 20px; border-radius: 15px; width: 250px; box-shadow: 0 0 15px rgba(0,255,255,0.2);">
+          <h4 style="color: #00ffff;">Kategori Junior</h4>
+          <p>Peserta dari tingkat SMP/SMA sederajat. Akan memperlombakan Robot Soccer!</p>
+        </div>
+        <div style="background-color: #222; padding: 20px; border-radius: 15px; width: 250px; box-shadow: 0 0 15px rgba(0,255,255,0.2);">
+          <h4 style="color: #00ffff;">Kategori Senior</h4>
+          <p>Peserta dari tingkat Universitas/Politeknik. Akan memperlombakan Robot Transporter.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Acara -->
+    <div style="margin-top: 50px;">
+      <h3 style="font-size: 24px; color: #00ffff;">Timeline Acara</h3>
+      <ul style="list-style: none; padding: 0; font-size: 18px; margin-top: 20px;">
+        <li>📅 <strong>Pendaftaran</strong>: 1 Mei – 10 Juni 2025</li>
+        <li>🔧 <strong>Technical Meeting</strong>: 20 Juni 2025</li>
+        <li>🤖 <strong>Hari H Lomba</strong>: 21 Juni 2025</li>
+      </ul>
+    </div>
+
+    <!-- Container 2 kolom -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 50px;">
+      <div style="flex: 1 1 300px; max-width: 450px;">
+        <h3 style="font-size: 20px; color: #00ffff;">Kenapa Harus Ikut ERCO?</h3>
+        <ul style="text-align: left; font-size: 16px; padding-left: 20px;">
+          <li>🚀 Tantangan robotik yang seru dan inovatif</li>
+          <li>🏅 Sertifikat resmi & hadiah menarik</li>
+          <li>🤝 Bertemu tim robotik dari berbagai kampus & sekolah</li>
+          <li>📈 Meningkatkan skill dan pengalaman kompetitif</li>
+        </ul>
+      </div>
+
+      <div style="flex: 1 1 300px; max-width: 450px;">
+        <h3 style="font-size: 20px; color: #00ffff;">Pertanyaan Umum (FAQ)</h3>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">Q: Apakah lomba ini seru untuk diikuti?</div>
+          <div class="faq-answer">A: Tentu saja apalagi kamu akan mendapatkan banyak pengalaman di sini.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">Q: Apakah robot harus buatan sendiri?</div>
+          <div class="faq-answer">A: Ya, seluruh tim diwajibkan merakit dan memprogram robot secara mandiri.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">Q: Apakah boleh tim campuran dari beberapa sekolah/universitas?</div>
+          <div class="faq-answer">A: Tidak, kalian harus dalam satu instansi yang sama yah :3</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">Q: Apakah boleh mendaftar lebih dari satu tim?</div>
+          <div class="faq-answer">A: Boleh, asalkan tim berbeda nama dan anggota ya.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="register">
+    <h2>Formulir Pendaftaran</h2>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc7PzHzsk6owqu7U-B8X1pTwps80JaqIJfH8gpyyskBOu3y_A/viewform?embedded=true" allowfullscreen>Memuat…</iframe>
+    <p style="margin-top: 20px;">Catatan: Wajib mengisi form pendaftaran.</p>
+  </section>
+
+  <section id="rules">
+    <h2>Peraturan Lomba</h2>
+    <p>Coming soon.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Kontak</h2>
+    <p>Email: <a href="mailto:epromrobotcompetition@gmail.com" style="color:#00ffff;">epromrobotcompetition@gmail.com</a></p>
+    <p>Telepon: 0823-4834-8155</p>
+  </section>
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll("section");
+      sections.forEach(section => section.classList.remove("active"));
+      document.getElementById(sectionId).classList.add("active");
+
+      const navLinks = document.querySelectorAll("nav a");
+      navLinks.forEach(link => link.classList.remove("active"));
+      const clickedLink = document.querySelector(`nav a[onclick="showSection('${sectionId}')"]`);
+      if (clickedLink) clickedLink.classList.add("active");
+
+      // Close burger menu after click (mobile)
+      document.getElementById("navLinks").classList.remove("show");
+    }
+
+    function toggleFaq(element) {
+      element.classList.toggle('active');
+    }
+
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+  </script>
+
+  <footer style="background-color: #111; padding: 20px; color: #aaa; font-size: 14px; margin-top: 100px;">
+    <div style="max-width: 800px; margin: auto;">
+      <p>&copy; 2025 Eprom Robotic Competition. Diselenggarakan oleh EPROM - Politeknik Negeri Ujung Pandang.</p>
+      <p>
+        Navigasi Cepat:
+        <a href="#" onclick="showSection('home')" style="color:#00ffff; text-decoration:none;">Home</a> |
+        <a href="#" onclick="showSection('register')" style="color:#00ffff; text-decoration:none;">Daftar</a> |
+        <a href="#" onclick="showSection('rules')" style="color:#00ffff; text-decoration:none;">Peraturan</a> |
+        <a href="#" onclick="showSection('contact')" style="color:#00ffff; text-decoration:none;">Kontak</a>
+      </p>
+      <p>Hubungi kami: <a href="mailto:epromrobotcompetition@gmail.com" style="color:#00ffff;">epromrobotcompetition@gmail.com</a></p>
+    </div>
+  </footer>
+
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+    style="position: fixed; bottom: 20px; right: 20px; padding: 12px 16px; border: none;
+    border-radius: 50%; background-color: #00ffff; color: #000; font-weight: bold;
+    cursor: pointer; box-shadow: 0 0 12px rgba(0,255,255,0.5); font-size: 18px;">
+    ↑
+  </button>
+
+</body>
+</html>

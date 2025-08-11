@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eprom Robotic Competition</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: white;
+    }
+
+    /* Scroll Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Navbar */
+    nav {
+      background-color: #222;
+      padding: 10px 20px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s, border-bottom 0.3s;
+    }
+    nav a:hover,
+    nav a.active {
+      color: #00ffff;
+      border-bottom: 2px solid #00ffff;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #222;
+      padding: 10px 0;
+      border-radius: 0 0 10px 10px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .mobile-menu a {
+      margin: 10px 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .mobile-menu.show {
+        display: flex;
+      }
+    }
+
+    section {
+      padding: 50px 20px;
+      max-width: 100%;
+    }
+
+    iframe {
+      width: 100%;
+      height: 1600px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.1);
+    }
+
+    @media screen and (max-width: 768px) {
+      iframe {
+        height: 1800px;
+      }
+    }
+
+    /* FAQ Collapsible */
+    .faq-item {
+      margin-bottom: 15px;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .faq-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .faq-question {
+      font-weight: bold;
+      font-size: 16px;
+      color: #ffffff;
+      position: relative;
+      padding-right: 20px;
+    }
+
+    .faq-question::after {
+      content: "▼";
+      position: absolute;
+      right: 0;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      font-size: 15px;
+      color: #dddddd;
+      padding-left: 10px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      margin-top: 8px;
+    }
+
+    footer {
+      background-color: #111;
+      padding: 20px;
+      color: #aaa;
+      font-size: 14px;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <div></div><div></div><div></div>
+    </div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#register">Daftar</a>
+      <a href="#rules">Peraturan</a>
+      <a href="#contact">Kontak</a>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#register">Daftar</a>
+    <a href="#rules">Peraturan</a>
+    <a href="#contact">Kontak</a>
+  </div>
+
+  <!-- HOME -->
+  <section id="home" class="reveal">
+    <img src="Eprom logo.png" alt="Logo EPROM" style="max-width: 200px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,255,255,0.2); margin-bottom: 20px;">
+    <h2>Selamat Datang di Eprom Robotic Competition (ERCO)</h2>
+    <p>Eprom Robotic Competition adalah kompetisi robotik tingkat universitas dan sekolah menengah</p>
+    <p>yang diselenggarakan oleh Elektro Poltek Robot Team (EPROM), Politeknik Negeri Ujung Pandang.</p>
+
+    <div class="reveal" style="margin-top: 40px;">
+      <h3 style="color: #00ffff;">Kategori Lomba</h3>
+      <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+        <div style="background-color: #222; padding: 20px; border-radius: 15px; width: 250px;">
+          <h4 style="color: #00ffff;">Junior</h4>
+          <p>Peserta dari SMP/SMA sederajat. Lomba: Robot Soccer!</p>
+        </div>
+        <div style="background-color: #222; padding: 20px; border-radius: 15px; width: 250px;">
+          <h4 style="color: #00ffff;">Senior</h4>
+          <p>Peserta dari Universitas/Politeknik. Lomba: Robot Transporter.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top: 40px;">
+      <h3 style="color: #00ffff;">Timeline</h3>
+      <ul style="list-style: none; font-size: 18px;">
+        <li>📅 <strong>Pendaftaran</strong>: 1 Mei – 10 Juni 2025</li>
+        <li>🔧 <strong>Technical Meeting</strong>: 20 Juni 2025</li>
+        <li>🤖 <strong>Hari H</strong>: 21 Juni 2025</li>
+      </ul>
+    </div>
+
+    <div class="reveal" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 50px;">
+      <div style="flex: 1 1 300px; max-width: 450px;">
+        <h3 style="color: #00ffff;">Kenapa Harus Ikut?</h3>
+        <ul style="text-align: left;">
+          <li>🚀 Tantangan robotik seru & inovatif</li>
+          <li>🏅 Sertifikat resmi & hadiah menarik</li>
+          <li>🤝 Bertemu tim dari berbagai daerah</li>
+          <li>📈 Meningkatkan skill & pengalaman</li>
+        </ul>
+      </div>
+      <div style="flex: 1 1 300px; max-width: 450px;">
+        <h3 style="color: #00ffff;">Pertanyaan Umum (FAQ)</h3>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">Apakah lomba ini seru untuk diikuti?</div>
+          <div class="faq-answer">Tentu saja! Banyak pengalaman menarik yang bisa didapat.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">Apakah robot harus buatan sendiri?</div>
+          <div class="faq-answer">Ya, seluruh tim harus merakit dan memprogram secara mandiri.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">Boleh tim dari sekolah/univ berbeda?</div>
+          <div class="faq-answer">Tidak boleh, semua anggota tim harus dari instansi yang sama.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">Boleh daftar lebih dari 1 tim?</div>
+          <div class="faq-answer">Boleh, asal beda nama dan anggota tim.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTER -->
+  <section id="register" class="reveal">
+    <h2>Formulir Pendaftaran</h2>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc7PzHzsk6owqu7U-B8X1pTwps80JaqIJfH8gpyyskBOu3y_A/viewform?embedded=true" allowfullscreen>Memuat…</iframe>
+    <p style="margin-top: 20px;">Wajib mengisi form pendaftaran ya!</p>
+  </section>
+
+  <!-- RULES -->
+  <section id="rules" class="reveal">
+    <h2>Peraturan Lomba</h2>
+    <p>Coming soon.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <h2>Kontak</h2>
+    <p>Email: <a href="mailto:epromrobotcompetition@gmail.com" style="color:#00ffff;">epromrobotcompetition@gmail.com</a></p>
+    <p>Telepon: 0823-4834-8155</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Eprom Robotic Competition - EPROM Politeknik Negeri Ujung Pandang.</p>
+  </footer>
+
+  <script>
+    function toggleFaq(el) {
+      el.classList.toggle("active");
+    }
+
+    function toggleMenu(btn) {
+      btn.classList.toggle("active");
+      document.getElementById("mobileMenu").classList.toggle("show");
+    }
+
+    window.addEventListener("scroll", function () {
+      const reveals = document.querySelectorAll(".reveal");
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const revealTop = reveals[i].getBoundingClientRect().top;
+        const revealPoint = 100;
+        if (revealTop < windowHeight - revealPoint) {
+          reveals[i].classList.add("active");
+        }
+      }
+    });
+  </script>
+</body>
+</html>
