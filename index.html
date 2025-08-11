@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eprom Robotic Competition</title>
+  <style>
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    section.active {
+      animation: fadeInUp 0.6s ease-out;
+    } 
+
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    nav {
+      background-color: #222;
+      padding: 10px 20px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-title {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .hamburger {
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+      display: none;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 15px;
+      font-size: 18px;
+      transition: color 0.3s, border-bottom 0.3s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #00ffff;
+      font-weight: bold;
+      border-bottom: 2px solid #00ffff;
+    }
+
+    @media screen and (max-width: 768px) {
+      .hamburger { display: block; }
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+      }
+      .nav-links.open {
+        max-height: 500px;
+        opacity: 1;
+      }
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+
+    section {
+      position: absolute;
+      top: 100px;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s;
+      padding: 30px 20px;
+      max-width: 100%;
+    }
+
+    section.active {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      z-index: 1;
+      animation: fadeInSlide 0.8s ease;
+    }
+
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    iframe {
+      width: 100%;
+      height: 1600px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.1);
+    }
+
+    @media screen and (max-width: 768px) {
+      iframe { height: 1800px; }
+    }
+
+    .faq-item {
+      margin-bottom: 15px;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .faq-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .faq-question {
+      font-weight: bold;
+      font-size: 16px;
+      color: #ffffff;
+      position: relative;
+      padding-right: 20px;
+    }
+
+    .faq-question::after {
+      content: "▼";
+      position: absolute;
+      right: 0;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      font-size: 15px;
+      color: #dddddd;
+      padding-left: 10px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      margin-top: 8px;
+    }
+
+    .scroll-fade {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .scroll-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <div class="nav-title">ERCO</div>
+      <div id="hamburger" onclick="toggleMenu()" class="hamburger">☰</div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#" onclick="showSection('home')">Home</a>
+      <a href="#" onclick="showSection('register')">Daftar</a>
+      <a href="#" onclick="showSection('rules')">Peraturan</a>
+      <a href="#" onclick="showSection('contact')">Kontak</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="home" class="active">
+      <img src="erco.png" alt="Logo EPROM" style="max-width: 320px; margin-bottom: 32px; border-radius: 12px;" class="scroll-fade">
+      <h2 class="scroll-fade">Selamat Datang di Eprom Robotic Competition (ERCO)</h2>
+      <p class="scroll-fade">Eprom Robotic Competition adalah kompetisi robotik tingkat universitas dan sekolah menengah</p>
+      <p class="scroll-fade">yang diselenggarakan oleh Elektro Poltek Robot Team (EPROM), Politeknik Negeri Ujung Pandang.</p>
+
+      <div style="margin-top: 50px;" class="scroll-fade">
+        <h3 style="font-size: 24px; margin-bottom: 20px; color: #00ffff;">Kategori Lomba</h3>
+        <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+          <div style="background-color: #222; padding: 20px; border-radius: 15px; width: 250px; box-shadow: 0 0 15px rgba(0,255,255,0.2);" class="scroll-fade">
+            <h4 style="color: #00ffff;">Kategori Junior</h4>
+            <p>Peserta dari tingkat SMP/SMA sederajat. Akan memperlombakan Robot Soccer!</p>
+          </div>
+          <div style="background-color: #222; padding: 20px; border-radius: 15px; width: 250px; box-shadow: 0 0 15px rgba(0,255,255,0.2);" class="scroll-fade">
+            <h4 style="color: #00ffff;">Kategori Senior</h4>
+            <p>Peserta dari tingkat Universitas/Politeknik. Akan memperlombakan Robot Transporter.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 50px;" class="scroll-fade">
+        <h3 style="font-size: 24px; color: #00ffff;">Timeline Acara</h3>
+        <ul style="list-style: none; padding: 0; font-size: 18px; margin-top: 20px;">
+          <li>📅 <strong>Pendaftaran</strong>: Coming Soon</li>
+          <li>🔧 <strong>Technical Meeting</strong>: Coming soon</li>
+          <li>🤖 <strong>Hari H Lomba</strong>: 9 - 12 Oktober 2025</li>
+        </ul>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 50px;">
+        <div style="flex: 1 1 300px; max-width: 450px;" class="scroll-fade">
+          <h3 style="font-size: 20px; color: #00ffff;">Kenapa Harus Ikut ERCO?</h3>
+          <ul style="text-align: left; font-size: 16px; padding-left: 20px;">
+            <li>🚀 Tantangan robotik yang seru dan inovatif</li>
+            <li>🏅 Sertifikat resmi & hadiah menarik</li>
+            <li>🤝 Bertemu tim robotik dari berbagai kampus & sekolah</li>
+            <li>📈 Meningkatkan skill dan pengalaman kompetitif</li>
+          </ul>
+        </div>
+    </section>
+
+    <section id="register">
+      <h2>Formulir Pendaftaran</h2>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc7PzHzsk6owqu7U-B8X1pTwps80JaqIJfH8gpyyskBOu3y_A/viewform?embedded=true" allowfullscreen>Memuat…</iframe>
+      <p style="margin-top: 20px;">Catatan: Wajib mengisi form pendaftaran.</p>
+    </section>
+
+    <section id="rules">
+      <h2>Peraturan Lomba</h2>
+      <p>Coming soon.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Kontak</h2>
+      <p>Email: <a href="mailto:epromrobotcompetition@gmail.com" style="color:#00ffff;">epromrobotcompetition@gmail.com</a></p>
+      <p>Telepon: 0823-4834-8155</p>
+    </section>
+  </main>
+
+  <footer style="background-color: #111; padding: 20px; color: #aaa; font-size: 14px; margin-top: 100px;">
+    <div style="max-width: 800px; margin: auto;">
+      <p>&copy; 2025 Eprom Robotic Competition. Diselenggarakan oleh EPROM - Politeknik Negeri Ujung Pandang.</p>
+      <p>
+        Navigasi Cepat:
+        <a href="#" onclick="showSection('home')" style="color:#00ffff; text-decoration:none;">Home</a> |
+        <a href="#" onclick="showSection('register')" style="color:#00ffff; text-decoration:none;">Daftar</a> |
+        <a href="#" onclick="showSection('rules')" style="color:#00ffff; text-decoration:none;">Peraturan</a> |
+        <a href="#" onclick="showSection('contact')" style="color:#00ffff; text-decoration:none;">Kontak</a>
+      </p>
+      <p>Hubungi kami: <a href="mailto:epromrobotcompetition@gmail.com" style="color:#00ffff;">epromrobotcompetition@gmail.com</a></p>
+    </div>
+  </footer>
+
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+    style="position: fixed; bottom: 20px; right: 20px; padding: 12px 16px; border: none;
+    border-radius: 0%; background-color: #00ffff; color: #000; font-weight: bold;
+    cursor: pointer; box-shadow: 0 0 12px rgba(0,255,255,0.5); font-size: 18px;">
+    ↑
+  </button>
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll("section");
+      sections.forEach(section => section.classList.remove("active"));
+      document.getElementById(sectionId).classList.add("active");
+
+      const navLinks = document.querySelectorAll("nav a");
+      navLinks.forEach(link => link.classList.remove("active"));
+      const clickedLink = document.querySelector(`nav a[onclick="showSection('${sectionId}')"]`);
+      if (clickedLink) clickedLink.classList.add("active");
+
+      if (window.innerWidth <= 768) {
+        document.getElementById("navLinks").classList.remove("open");
+        document.getElementById("hamburger").textContent = "☰";
+      }
+    }
+
+    function toggleMenu() {
+      const nav = document.getElementById("navLinks");
+      const icon = document.getElementById("hamburger");
+      nav.classList.toggle("open");
+      icon.textContent = (icon.textContent === "☰") ? "✖" : "☰";
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
