@@ -22,8 +22,8 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background: linear-gradient(135deg, #1a1a2e, #16213e);
-      color: white;
+      background: #f5f5f5; /* abu terang */
+      color: #333;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
@@ -34,10 +34,10 @@
     }
 
     nav {
-      background-color: #222;
+      background-color: #8B0000; /* merah utama */
       padding: 10px 20px;
       border-radius: 0 0 10px 10px;
-      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -52,6 +52,7 @@
     .nav-title {
       font-size: 22px;
       font-weight: bold;
+      color: #fff;
     }
 
     .hamburger {
@@ -78,9 +79,9 @@
 
     nav a:hover,
     nav a.active {
-      color: #00ffff;
+      color: #FFD700; /* aksen emas */
       font-weight: bold;
-      border-bottom: 2px solid #00ffff;
+      border-bottom: 2px solid #FFD700;
     }
 
     @media screen and (max-width: 768px) {
@@ -134,7 +135,7 @@
       height: 1600px;
       border: none;
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,255,255,0.1);
+      box-shadow: 0 0 15px rgba(139,0,0,0.2);
     }
 
     @media screen and (max-width: 768px) {
@@ -144,7 +145,8 @@
     .faq-item {
       margin-bottom: 15px;
       text-align: left;
-      background: rgba(255, 255, 255, 0.05);
+      background: #fff;
+      border: 2px solid #8B0000;
       border-radius: 10px;
       padding: 10px 15px;
       cursor: pointer;
@@ -152,13 +154,13 @@
     }
 
     .faq-item:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: #fceaea;
     }
 
     .faq-question {
       font-weight: bold;
       font-size: 16px;
-      color: #ffffff;
+      color: #8B0000;
       position: relative;
       padding-right: 20px;
     }
@@ -179,7 +181,7 @@
       overflow: hidden;
       transition: max-height 0.4s ease-out;
       font-size: 15px;
-      color: #dddddd;
+      color: #333;
       padding-left: 10px;
     }
 
@@ -218,26 +220,26 @@
   <main>
     <section id="home" class="active">
       <img src="erco.png" alt="Logo EPROM" style="max-width: 320px; margin-bottom: 32px; border-radius: 12px;" class="scroll-fade">
-      <h2 class="scroll-fade">Selamat Datang di Eprom Robotic Competition (ERCO)</h2>
+      <h2 class="scroll-fade" style="color:#8B0000;">Selamat Datang di Eprom Robotic Competition (ERCO)</h2>
       <p class="scroll-fade">Eprom Robotic Competition adalah kompetisi robotik tingkat universitas dan sekolah menengah</p>
       <p class="scroll-fade">yang diselenggarakan oleh Elektro Poltek Robot Team (EPROM), Politeknik Negeri Ujung Pandang.</p>
 
       <div style="margin-top: 50px;" class="scroll-fade">
-        <h3 style="font-size: 24px; margin-bottom: 20px; color: #00ffff;">Kategori Lomba</h3>
+        <h3 style="font-size: 24px; margin-bottom: 20px; color: #8B0000;">Kategori Lomba</h3>
         <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
-          <div style="background-color: #222; padding: 20px; border-radius: 15px; width: 250px; box-shadow: 0 0 15px rgba(0,255,255,0.2);" class="scroll-fade">
-            <h4 style="color: #00ffff;">Kategori Junior</h4>
-            <p>Peserta dari tingkat SMP/SMA sederajat. Akan memperlombakan Robot Soccer!</p>
+          <div style="background-color: #fff; padding: 20px; border-radius: 15px; width: 250px; border:2px solid #8B0000; box-shadow: 0 0 15px rgba(139,0,0,0.2);" class="scroll-fade">
+            <h4 style="color: #8B0000;">Kategori Junior</h4>
+            <p>Kategori junior merupakan kategori yang dapat diikuti oleh peserta dari tingkat SMP/SMA sederajat se indonesia dan akan memperlombakan Robot Soccer.</p>
           </div>
-          <div style="background-color: #222; padding: 20px; border-radius: 15px; width: 250px; box-shadow: 0 0 15px rgba(0,255,255,0.2);" class="scroll-fade">
-            <h4 style="color: #00ffff;">Kategori Senior</h4>
-            <p>Peserta dari tingkat Universitas/Politeknik. Akan memperlombakan Robot Transporter.</p>
+          <div style="background-color: #fff; padding: 20px; border-radius: 15px; width: 250px; border:2px solid #8B0000; box-shadow: 0 0 15px rgba(139,0,0,0.2);" class="scroll-fade">
+            <h4 style="color: #8B0000;">Kategori Senior</h4>
+            <p>Kategori senior merupakan kategori yang dapat diikuti oleh peserta dari tingkat Perguruan tinggi se indonesia dan akan memperlombakan Robot Transporter.</p>
           </div>
         </div>
       </div>
 
       <div style="margin-top: 50px;" class="scroll-fade">
-        <h3 style="font-size: 24px; color: #00ffff;">Timeline Acara</h3>
+        <h3 style="font-size: 24px; color: #8B0000;">Timeline Acara</h3>
         <ul style="list-style: none; padding: 0; font-size: 18px; margin-top: 20px;">
           <li>📅 <strong>Pendaftaran</strong>: 18 Agustus - 27 September 2025</li>
           <li>📅 <strong>Sosialisasi</strong>: 1 September 2025</li>
@@ -248,52 +250,93 @@
 
       <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 50px;">
         <div style="flex: 1 1 300px; max-width: 450px;" class="scroll-fade">
-          <h3 style="font-size: 20px; color: #00ffff;">Kenapa Harus Ikut ERCO?</h3>
+          <h3 style="font-size: 20px; color: #8B0000;">Kenapa Harus Ikut ERCO?</h3>
           <ul style="text-align: left; font-size: 16px; padding-left: 20px;">
-            <li>🚀 Tantangan robotik yang seru dan inovatif</li>
-            <li>🏅 Sertifikat resmi & hadiah menarik</li>
-            <li>🤝 Bertemu tim robotik dari berbagai kampus & sekolah</li>
-            <li>📈 Meningkatkan skill dan pengalaman kompetitif</li>
+            <li>🚀 Serunya tantangan robotik penuh inovasi yang memacu kreativitas</li>
+            <li>🏅 Raih sertifikat resmi & hadiah untuk tim terbaik</li>
+            <li>🤝 Bangun relasi dengan tim robotik dari berbagai sekolah & kampus</li>
+            <li>📈 Asah skill, tingkatkan pengalaman, dan buktikan kemampuan kompetitifmu</li>
           </ul>
         </div>
     </section>
 
     <section id="register">
-      <h2>Formulir Pendaftaran</h2>
+      <h2 style="color:#8B0000;">Formulir Pendaftaran</h2>
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc7PzHzsk6owqu7U-B8X1pTwps80JaqIJfH8gpyyskBOu3y_A/viewform?embedded=true" allowfullscreen>Memuat…</iframe>
       <p style="margin-top: 20px;">Catatan: Wajib mengisi form pendaftaran.</p>
     </section>
 
     <section id="rules">
-      <h2>Peraturan Lomba</h2>
-      <p>Coming soon.</p>
-    </section>
+  <h2 style="color:#8B0000;">Peraturan Lomba</h2>
+  <p style="margin: 10px 0;">Silakan unduh dan baca guidebook resmi ERCO 2025:</p>
+  <a href="https://drive.google.com/drive/folders/1BHBcpH1J8cZRHzHDgcDYw2FqmF3S5-6w?usp=sharing" 
+     target="_blank" class="btn-link">
+     📖 GUIDEBOOK ERCO 2025
+  </a>
+  <style>
+  /* Tambahan style tombol */
+  .btn-link {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 1rem auto;
+    background-color: #8B0000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(139,0,0,0.3);
+    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .btn-link:hover {
+    background-color: #a50000;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(139,0,0,0.4);
+  }
+
+  .btn-link:active {
+    transform: scale(0.95);
+  }
+</style>
+
+</section>
+
 
     <section id="contact">
-      <h2>Kontak</h2>
-      <p>Email: <a href="mailto:epromrobotcompetition@gmail.com" style="color:#00ffff;">epromrobotcompetition@gmail.com</a></p>
-      <p>Telepon: 0823-4834-8155</p>
+      <h2 style="color:#8B0000;">Kontak</h2>
+      <p>Email: <a href="mailto:epromrobotcompetition@gmail.com" style="color:#8B0000;">epromrobotcompetition@gmail.com</a></p>
+      <p>WhatsApp 1 : 0823-4834-8155</p>
+      <p>WhatsApp 2 : 0878-6525-8231</p>
+      <h2 style="color:#8B0000;">Grup Whatsapp : </h2>
+      <p>Untuk informasi lebih lanjut, silakan bergabung di grup WhatsApp resmi ERCO 2025:</p>
+      <a href="https://chat.whatsapp.com/GRhWMWRbIY9GOVzshrcOt6?mode=ac_t" 
+     target="_blank" class="btn-link">
+     📱 Grup WhatsApp ERCO 2025
+  </a>
+
+      
     </section>
   </main>
 
-  <footer style="background-color: #111; padding: 20px; color: #aaa; font-size: 14px; margin-top: 100px;">
+  <footer style="background-color: #8B0000; padding: 20px; color: #fff; font-size: 14px; margin-top: 1800px;">
     <div style="max-width: 800px; margin: auto;">
       <p>&copy; 2025 Eprom Robotic Competition. Diselenggarakan oleh EPROM - Politeknik Negeri Ujung Pandang.</p>
       <p>
         Navigasi Cepat:
-        <a href="#" onclick="showSection('home')" style="color:#00ffff; text-decoration:none;">Home</a> |
-        <a href="#" onclick="showSection('register')" style="color:#00ffff; text-decoration:none;">Daftar</a> |
-        <a href="#" onclick="showSection('rules')" style="color:#00ffff; text-decoration:none;">Peraturan</a> |
-        <a href="#" onclick="showSection('contact')" style="color:#00ffff; text-decoration:none;">Kontak</a>
+        <a href="#" onclick="showSection('home')" style="color:#FFD700; text-decoration:none;">Home</a> |
+        <a href="#" onclick="showSection('register')" style="color:#FFD700; text-decoration:none;">Daftar</a> |
+        <a href="#" onclick="showSection('rules')" style="color:#FFD700; text-decoration:none;">Peraturan</a> |
+        <a href="#" onclick="showSection('contact')" style="color:#FFD700; text-decoration:none;">Kontak</a>
       </p>
-      <p>Hubungi kami: <a href="mailto:epromrobotcompetition@gmail.com" style="color:#00ffff;">epromrobotcompetition@gmail.com</a></p>
+      <p>Hubungi kami: <a href="mailto:epromrobotcompetition@gmail.com" style="color:#FFD700;">epromrobotcompetition@gmail.com</a></p>
     </div>
   </footer>
 
   <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
     style="position: fixed; bottom: 20px; right: 20px; padding: 12px 16px; border: none;
-    border-radius: 0%; background-color: #00ffff; color: #000; font-weight: bold;
-    cursor: pointer; box-shadow: 0 0 12px rgba(0,255,255,0.5); font-size: 18px;">
+    border-radius: 50%; background-color: #8B0000; color: #fff; font-weight: bold;
+    cursor: pointer; box-shadow: 0 0 12px rgba(139,0,0,0.4); font-size: 18px;">
     ↑
   </button>
 
