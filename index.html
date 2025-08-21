@@ -207,14 +207,6 @@ section.active {
   <nav>
     <div class="nav-container">
       <div class="nav-title">ERCO</div>
-      <div id="hamburger" onclick="toggleMenu()" class="hamburger">☰</div>
-    </div>
-    <div class="nav-links" id="navLinks">
-      <a href="#" onclick="showSection('home')">Home</a>
-      <a href="#" onclick="showSection('register')">Daftar</a>
-      <a href="#" onclick="showSection('rules')">Peraturan</a>
-      <a href="#" onclick="showSection('contact')">Kontak</a>
-    </div>
   </nav>
 
   <main>
@@ -259,18 +251,11 @@ section.active {
           </ul>
         </div>
     </section>
-
-    <section id="register">
-      <h2 style="color:#8B0000;">Formulir Pendaftaran</h2>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc7PzHzsk6owqu7U-B8X1pTwps80JaqIJfH8gpyyskBOu3y_A/viewform?embedded=true" allowfullscreen>Memuat…</iframe>
-      <p style="margin-top: 20px;">Catatan: Wajib mengisi form pendaftaran.</p>
-    </section>
-
-    <section id="rules">
-  <h2 style="color:#8B0000;">Peraturan Lomba</h2>
-  <p style="margin: 10px 0;">Silakan unduh dan baca guidebook resmi ERCO 2025:</p>
+      <h2 style="color:#8B0000;" class="scroll-fade">Peraturan Lomba</h2>
+  <p style="margin: 10px 0;" class="scroll-fade">Silakan unduh dan baca guidebook resmi ERCO 2025:</p>
   <a href="https://drive.google.com/drive/folders/1BHBcpH1J8cZRHzHDgcDYw2FqmF3S5-6w?usp=sharing" 
      target="_blank" class="btn-link">
+     
      📖 GUIDEBOOK ERCO 2025
   </a>
   <style>
@@ -299,36 +284,29 @@ section.active {
     transform: scale(0.95);
   }
 </style>
-
-</section>
-
-
-    <section id="contact">
-      <h2 style="color:#8B0000;">Kontak</h2>
-      <p>Email: <a href="mailto:epromrobotcompetition@gmail.com" style="color:#8B0000;">epromrobotcompetition@gmail.com</a></p>
-      <p>WhatsApp 1 : 0823-4834-8155</p>
-      <p>WhatsApp 2 : 0878-6525-8231</p>
-      <h2 style="color:#8B0000;">Grup Whatsapp : </h2>
-      <p>Untuk informasi lebih lanjut, silakan bergabung di grup WhatsApp resmi ERCO 2025:</p>
+ <h2 style="color:#8B0000;" class="scroll-fade">Pendaftaran</h2>
+<p style="margin: 10px 0;" class="scroll-fade">Silahakn mengakses link pendaftaran resmi ERCO 2025:</p>
+  <a href="https://forms.gle/2ojShoqBK1NfEZ4w9" 
+     target="_blank" class="btn-link">
+     📄 PENDAFTARAN ERCO 2025
+  </a>
+  <h2 style="color:#8B0000;" class="scroll-fade">Grup Whatsapp : </h2>
+      <p style="margin: 10px 0;" class="scroll-fade">Untuk informasi lebih lanjut, silakan bergabung di grup WhatsApp resmi ERCO 2025:</p>
       <a href="https://chat.whatsapp.com/GRhWMWRbIY9GOVzshrcOt6?mode=ac_t" 
      target="_blank" class="btn-link">
      📱 Grup WhatsApp ERCO 2025
-  </a>
-
+      </a>  
+      <h2 style="color:#8B0000;"  class="scroll-fade">Kontak</h2>
+      <p>Email: <a href="mailto:epromrobotcompetition@gmail.com" style="color:#8B0000;" class="scroll-fade">epromrobotcompetition@gmail.com</a></p>
+      <p>WhatsApp 1 : 0823-4834-8155</p>
+      <p>WhatsApp 2 : 0878-6525-8231</p>
       
     </section>
   </main>
 
-  <footer style="background-color: #8B0000; padding: 20px; color: #fff; font-size: 14px; margin-top: 1800px;">
+  <footer style="background-color: #8B0000; padding: 20px; color: #fff; font-size: 14px; margin-top: 500px;">
     <div style="max-width: 800px; margin: auto;">
       <p>&copy; 2025 Eprom Robotic Competition. Diselenggarakan oleh EPROM - Politeknik Negeri Ujung Pandang.</p>
-      <p>
-        Navigasi Cepat:
-        <a href="#" onclick="showSection('home')" style="color:#FFD700; text-decoration:none;">Home</a> |
-        <a href="#" onclick="showSection('register')" style="color:#FFD700; text-decoration:none;">Daftar</a> |
-        <a href="#" onclick="showSection('rules')" style="color:#FFD700; text-decoration:none;">Peraturan</a> |
-        <a href="#" onclick="showSection('contact')" style="color:#FFD700; text-decoration:none;">Kontak</a>
-      </p>
       <p>Hubungi kami: <a href="mailto:epromrobotcompetition@gmail.com" style="color:#FFD700;">epromrobotcompetition@gmail.com</a></p>
     </div>
   </footer>
@@ -351,18 +329,10 @@ section.active {
       const clickedLink = document.querySelector(`nav a[onclick="showSection('${sectionId}')"]`);
       if (clickedLink) clickedLink.classList.add("active");
 
-      if (window.innerWidth <= 768) {
-        document.getElementById("navLinks").classList.remove("open");
-        document.getElementById("hamburger").textContent = "☰";
-      }
+      
     }
 
-    function toggleMenu() {
-      const nav = document.getElementById("navLinks");
-      const icon = document.getElementById("hamburger");
-      nav.classList.toggle("open");
-      icon.textContent = (icon.textContent === "☰") ? "✖" : "☰";
-    }
+    
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
