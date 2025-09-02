@@ -222,12 +222,34 @@ section.active {
           <div style="background-color: #fff; padding: 20px; border-radius: 15px; width: 250px; border:2px solid #8B0000; box-shadow: 0 0 15px rgba(139,0,0,0.2);" class="scroll-fade">
             <h4 style="color: #8B0000;">Kategori Junior</h4>
             <p>Kategori junior merupakan kategori yang dapat diikuti oleh peserta dari tingkat SMP/SMA sederajat se indonesia dan akan memperlombakan Robot Soccer.</p>
+          <p><b>Jumlah Tim Terdaftar: <span id="countJunior">0</span></b></p>
           </div>
           <div style="background-color: #fff; padding: 20px; border-radius: 15px; width: 250px; border:2px solid #8B0000; box-shadow: 0 0 15px rgba(139,0,0,0.2);" class="scroll-fade">
             <h4 style="color: #8B0000;">Kategori Senior</h4>
             <p>Kategori senior merupakan kategori yang dapat diikuti oleh peserta dari tingkat Perguruan tinggi se indonesia dan akan memperlombakan Robot Transporter.</p>
+            <p><b>Jumlah Tim Terdaftar: <span id="countSenior">0</span></b></p>
           </div>
         </div>
+        <script>
+  function animateCounter(elementId, target, speed = 100) {
+    let count = 0;
+    const element = document.getElementById(elementId);
+
+    const interval = setInterval(() => {
+      if (count < target) {
+        count++;
+        element.innerText = count;
+      } else {
+        clearInterval(interval);
+      }
+    }, speed); // makin besar makin lambat
+  }
+
+  // atur speed sesuai kebutuhan
+  animateCounter("countJunior", 0, 150); 
+  animateCounter("countSenior", 0, 150);
+</script>
+
       </div>
 
       <div style="margin-top: 50px;" class="scroll-fade">
